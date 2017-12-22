@@ -1,20 +1,17 @@
 import 'babel-polyfill'
+
 import React from 'react'
-import ReactDOM from 'react-dom'
-import {Router, browserHistory} from 'react-router'
-import {Provider} from 'react-redux'
-import {syncHistoryWithStore} from 'react-router-redux'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import App from './App'
 
-// import 'bootstrap/dist/css/bootstrap.css'
+import configureStore from './store'
+import initialState from './reducers/initialState'
+const store = configureStore(initialState)
 
-// import routes from './routes'
-// import configureStore from './store/configureStore'
-// import initialState from './reducers/initialState'
-// const store = configureStore(initialState)
-const history = syncHistoryWithStore(browserHistory, store)
-
-ReactDOM.render(
-    <Router history={history} />,
-
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )

@@ -1,0 +1,13 @@
+
+{
+  "presets": [
+    "react",
+    "stage-2",
+    ["env", {
+      "modules": "commonjs",
+      "target": {
+        "browsers": ["las 2 versions", "safari>= 7"]
+      }
+      }]
+  ]
+}
