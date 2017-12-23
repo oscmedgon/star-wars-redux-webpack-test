@@ -10,7 +10,7 @@ class App extends Component {
     super()
   }
   async componentWillMount () {
-    await this.props.loadPlayers()
+    await this.props.gameActions.loadPlayers()
   }
   render () {
     return (
@@ -26,7 +26,9 @@ function mapStateToProps (state) {
   }
 }
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(gameActions, dispatch)
+  return {
+    gameActions: bindActionCreators(gameActions, dispatch)
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

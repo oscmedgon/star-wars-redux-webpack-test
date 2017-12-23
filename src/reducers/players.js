@@ -1,29 +1,30 @@
-import axios from 'axios'
+import initialState from './initialState'
 
-const players = async (state = [], action) => {
+const players = async (state = initialState.players, action) => {
+  console.log(action)
   switch (action.type) {
-    case 'LOAD_PLAYERS': {
-      const baseURL = 'https://swapi.co/api/people/?format=json&page='
-      const {data} = await axios.get('https://swapi.co/api/people/?format=json')
-      const playerPages = data.count / 10
-      const players = []
-      for (let i = 1; i < playerPages + 1; i++) {
-        const {data} = await axios.get(baseURL + i)
-        data.results.forEach(player => {
-          const {name, vehicles} = player
-          const newPlayer = {
-            name,
-            vehicles
-          }
-          players.push(newPlayer)
-        })
-      }
-      const filteredPlayers = players.filter(player => player.vehicles.length)
+    case 'LOAD_PLAYERS_SUCCESS':
       return {
         ...state,
-        players: filteredPlayers
+        loading: false,
+        error: null,
+        list: [...action.payload]
       }
-    }
+    case 'LOAD_PLAYERS_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        list: []
+      }
+    case 'LOAD_PLAYERS_INIT':
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        list: []
+      }
+
     default:
       return state
   }

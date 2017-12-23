@@ -1,5 +1,9 @@
 const initialState = {
-  players: []
+  players: {
+    list: [],
+    error: null,
+    loading: false
+  }
 }
 
 export default initialState
