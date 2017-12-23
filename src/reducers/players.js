@@ -1,6 +1,6 @@
 import initialState from './initialState'
 
-const players = async (state = initialState.players, action) => {
+const players = (state = initialState.players, action) => {
   console.log(action)
   switch (action.type) {
     case 'LOAD_PLAYERS_SUCCESS':

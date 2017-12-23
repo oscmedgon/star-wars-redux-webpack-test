@@ -20,7 +20,7 @@ const API = {
           players.push(newPlayer)
         })
       }
-      const filteredPlayers = players.filter(player => player.vehicles.length)
+      const filteredPlayers = await players.filter(player => player.vehicles.length)
       const list = [...filteredPlayers]
       console.log(list)
       return list
