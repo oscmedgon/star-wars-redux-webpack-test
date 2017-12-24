@@ -1,16 +1,14 @@
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 
 const API = {
   players: {
     async getPlayers () {
       const baseURL = 'https://swapi.co/api/people/?format=json&page='
-      const response = await fetch('https://swapi.co/api/people/?format=json')
-      const data = await response.json()
+      const {data} = await axios('https://swapi.co/api/people/?format=json')
       const playerPages = Math.round(data.count / 10)
       const players = []
       for (let i = 1; i < playerPages + 1; i++) {
-        const response = await fetch(baseURL + i)
-        const data = await response.json()
+        const {data} = await axios(baseURL + i)
         data.results.forEach(player => {
           const {name, vehicles} = player
           const newPlayer = {
@@ -21,9 +19,17 @@ const API = {
         })
       }
       const filteredPlayers = await players.filter(player => player.vehicles.length)
-      const list = [...filteredPlayers]
-      console.log(list)
-      return list
+      const list = await filteredPlayers.map(async player => {
+        const vehiclesCall = await player.vehicles.map(async vehicle => {
+          const {data} = await axios.get(vehicle)
+          return data
+        })
+        const vehicles = await Promise.all(vehiclesCall)
+        player.vehicles = await vehicles
+        return player
+      })
+      const response = Promise.all(list)
+      return response
     }
   }
 }

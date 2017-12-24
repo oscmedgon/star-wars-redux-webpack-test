@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import * as gameActions from './actions'
-import reducer from './reducers'
+import Game from './Components'
+import './styles.css'
 
 class App extends Component {
   constructor () {
@@ -14,12 +15,15 @@ class App extends Component {
   }
   render () {
     return (
-      <div>
-        <h1>Hola mundo</h1>
-      </div>
+      <Game gameLoading={this.props.players.loading} />
     )
   }
 }
+App.propTypes = {
+  gameActions: PropTypes.object.isRequired,
+  players: PropTypes.object.isRequired
+}
+
 function mapStateToProps (state) {
   return {
     ...state
