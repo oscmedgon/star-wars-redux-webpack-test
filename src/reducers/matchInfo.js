@@ -2,23 +2,25 @@ import initialState from './initialState'
 
 const matchInfo = (state = initialState.matchInfo, action) => {
   switch (action.type) {
-    case 'LOAD_GAME_SUCCESS':
+    case 'NEW_GAME':
       return {
         ...state,
         loading: false,
         players: {
           player1: {
-            name: action.payload.player1.name,
+            name: action.payload.players.player1.name,
             vehicle: {
-              speed: action.payload.player1.vehicle.speed,
-              cargo: action.payload.player1.vehicle.cargo
+              name: action.payload.players.player1.vehicle.name,
+              speed: action.payload.players.player1.vehicle.speed,
+              cargo: action.payload.players.player1.vehicle.cargo
             }
           },
           player2: {
-            name: action.payload.player2.name,
+            name: action.payload.players.player2.name,
             vehicle: {
-              speed: action.payload.player2.vehicle.speed,
-              cargo: action.payload.player2.vehicle.cargo
+              name: action.payload.players.player2.vehicle.name,
+              speed: action.payload.players.player2.vehicle.speed,
+              cargo: action.payload.players.player2.vehicle.cargo
             }
           }
         },
@@ -35,6 +37,7 @@ const matchInfo = (state = initialState.matchInfo, action) => {
           player1: {
             name: 'loading',
             vehicle: {
+              name: 'loading...',
               speed: 'loading',
               cargo: 'loading'
             }
@@ -42,6 +45,7 @@ const matchInfo = (state = initialState.matchInfo, action) => {
           player2: {
             name: 'loading',
             vehicle: {
+              name: 'loading...',
               speed: 'loading',
               cargo: 'loading'
             }

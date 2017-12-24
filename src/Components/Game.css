@@ -8,3 +8,8 @@
   margin: 0px;
   padding: 0px;
 }
+
+.game-section > * {
+  width: 33.3vw;
+  text-align: center;
+}

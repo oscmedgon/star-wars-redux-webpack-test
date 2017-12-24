@@ -14,9 +14,20 @@ class App extends Component {
     await this.props.gameActions.loadPlayers()
   }
   render () {
-    return (
-      <Game gameLoading={this.props.players.loading} />
-    )
+    if (this.props.players.loading) {
+      return (
+        <div className='game-section'>
+          <div>
+            <h1>Espera mientras carga la información principal</h1>
+          </div>
+          <img src='https://thumbs.gfycat.com/AmazingDazzlingFrog-max-1mb.gif' height='100' />
+        </div>
+      )
+    } else {
+      return (
+        <Game />
+      )
+    }
   }
 }
 App.propTypes = {

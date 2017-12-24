@@ -2,4 +2,10 @@ body {
   background-image: url("https://res.cloudinary.com/dm303fk5u/image/upload/v1514112837/starwars_ydskyc.jpg");
   background-attachment: fixed;
   background-size: cover;
+  color: white;
+}
+
+li{
+  list-style-type: none;
+  text-align: left;
 }

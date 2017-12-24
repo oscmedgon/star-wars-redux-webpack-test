@@ -1,13 +1,17 @@
 import API from '../api'
+import {generateRandomMatch} from '../Utils'
 
-// Cart Actions
+// Players Actions
 const LOAD_PLAYERS_SUCCESS = 'LOAD_PLAYERS_SUCCESS'
 const LOAD_PLAYERS_FAILURE = 'LOAD_PLAYERS_FAILURE'
 
-// Products Actions (async)
+// Match Actions
+const NEW_GAME = 'NEW_GAME'
+
+// Players Actions (async)
 const LOAD_PLAYERS_INIT = 'LOAD_PLAYERS_INIT'
 
-// Action Creators
+// Action Creators Players
 export function fetchPlayersSuccess (players) {
   return {
     type: LOAD_PLAYERS_SUCCESS,
@@ -18,6 +22,16 @@ export function fetchPlayersFailure (error) {
   return {
     type: LOAD_PLAYERS_FAILURE,
     payload: error
+  }
+}
+
+// Action Creators Match
+
+export function generateNewMatch (players) {
+  const matchInfo = generateRandomMatch(players)
+  return {
+    type: NEW_GAME,
+    payload: matchInfo
   }
 }
 
