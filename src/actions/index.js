@@ -1,5 +1,5 @@
 import API from '../api'
-import {generateRandomMatch} from '../Utils'
+import {generateRandomMatch, matchResolution} from '../Utils'
 
 // Players Actions
 const LOAD_PLAYERS_SUCCESS = 'LOAD_PLAYERS_SUCCESS'
@@ -7,6 +7,7 @@ const LOAD_PLAYERS_FAILURE = 'LOAD_PLAYERS_FAILURE'
 
 // Match Actions
 const NEW_GAME = 'NEW_GAME'
+const RESOLVE_GAME = 'RESOLVE_GAME'
 
 // Players Actions (async)
 const LOAD_PLAYERS_INIT = 'LOAD_PLAYERS_INIT'
@@ -31,6 +32,15 @@ export function generateNewMatch (players) {
   const matchInfo = generateRandomMatch(players)
   return {
     type: NEW_GAME,
+    payload: matchInfo
+  }
+}
+
+// Action creators History
+export function resolveMatch (players, rules) {
+  const matchInfo = matchResolution(players, rules)
+  return {
+    type: RESOLVE_GAME,
     payload: matchInfo
   }
 }

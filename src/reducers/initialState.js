@@ -26,8 +26,27 @@ const initialState = {
       gold: 'loading...',
       distance: 'loading...'
     }
+  },
+  history: {
+    player1: {
+      points: 0,
+      lastStatus: false,
+      lastStats: {
+        totalTime: null,
+        timePerTravel: null,
+        travelNumber: null
+      }
+    },
+    player2: {
+      points: 0,
+      lastStatus: false,
+      lastStats: {
+        totalTime: null,
+        timePerTravel: null,
+        travelNumber: null
+      }
+    }
   }
-
 }
 
 export default initialState

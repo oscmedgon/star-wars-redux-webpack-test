@@ -44,4 +44,48 @@ const rulesPrettify = (players, rules) => {
   }
   return response
 }
-export {generateRandomMatch}
+
+const matchResolution = (players, rules) => {
+  const {player1, player2} = players
+  const {gold, distance} = rules
+  const statsP1 = checkPlayerStats(player1, gold, distance)
+  const statsP2 = checkPlayerStats(player2, gold, distance)
+  const result = checkWinner(statsP1.totalTime, statsP2.totalTime)
+  const response = {
+    player1: {
+      lastStatus: result !== 2 || false,
+      lastStats: {
+        totalTime: statsP1.totalTime,
+        timePerTravel: statsP1.timePerTravel,
+        travels: statsP1.travels
+      }
+    },
+    player2: {
+      lastStatus: result !== 1 || false,
+      lastStats: {
+        totalTime: statsP2.totalTime,
+        timePerTravel: statsP2.timePerTravel,
+        travels: statsP2.travels
+      }
+    }
+  }
+  return response
+}
+
+const checkPlayerStats = (player, gold, distance) => {
+  const {speed, cargo} = player.vehicle
+  // Checking number of travels
+  const travels = Math.ceil(((gold / cargo) * 2) - 1)
+  // Checking tital time to complete a single travel
+  const timePerTravel = distance / speed
+  // Checking total time including loads and unloads
+  const totalTime = (travels * timePerTravel) + travels
+  return {totalTime, timePerTravel, travels}
+}
+
+const checkWinner = (p1, p2) => {
+  if (p1 > p2) return 2
+  else if (p1 < p2) return 1
+  else if (p1 === p2) return 'draw'
+}
+export {generateRandomMatch, matchResolution}

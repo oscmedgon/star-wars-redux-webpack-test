@@ -17,9 +17,9 @@ class Game extends Component {
   render () {
     return (
       <div className='game-section' >
-        <Player player='Player 1' playerInfo={this.props.matchInfo.players.player1} />
-        <Match rules={this.props.matchInfo.rules} />
-        <Player player='Player 2' playerInfo={this.props.matchInfo.players.player2} />
+        <Player player='1' playerInfo={this.props.matchInfo.players.player1} matchHistory={this.props.history.player1.lastStats} />
+        <Match />
+        <Player player='2' playerInfo={this.props.matchInfo.players.player2} matchHistory={this.props.history.player2.lastStats} />
       </div>
     )
   }
