@@ -1,8 +1,11 @@
 import React from 'react'
 
+import './player.css'
+
 const Player = props => {
+  const playerStatus = props.matchStatus ? 'player-winner' : 'player-loser'
   return (
-    <div className='player-section'>
+    <div className={'player-section ' + playerStatus}>
       <h2>
         Player {props.player}
       </h2>
@@ -10,9 +13,9 @@ const Player = props => {
         {props.playerInfo.name}
       </h3>
       <ul>
-        <li>Name: {props.playerInfo.vehicle.name}</li>
-        <li>Speed: {props.playerInfo.vehicle.speed}</li>
-        <li>Cargo: {props.playerInfo.vehicle.cargo}</li>
+        <li>Name: <strong>{props.playerInfo.vehicle.name}</strong></li>
+        <li>Speed: <strong>{props.playerInfo.vehicle.speed}</strong> km/h</li>
+        <li>Cargo: <strong>{props.playerInfo.vehicle.cargo}</strong> kg</li>
       </ul>
       <h2>Match Stats</h2>
       <ul>

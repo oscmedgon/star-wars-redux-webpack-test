@@ -9,3 +9,16 @@ li{
   list-style-type: none;
   text-align: left;
 }
+
+.loading-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.loading-info < * {
+  display: block;
+  width: 100%;
+}

@@ -17,10 +17,10 @@ class App extends Component {
     if (this.props.players.loading) {
       return (
         <div className='game-section'>
-          <div>
-            <h1>Espera mientras carga la información principal</h1>
+          <div className='loading-info'>
+            <h1>Please stand by while R2 sets up the game</h1>
+            <img src='https://thumbs.gfycat.com/AmazingDazzlingFrog-max-1mb.gif' height='100' />
           </div>
-          <img src='https://thumbs.gfycat.com/AmazingDazzlingFrog-max-1mb.gif' height='100' />
         </div>
       )
     } else {

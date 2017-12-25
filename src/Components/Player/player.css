@@ -1,0 +1,11 @@
+.player-winner {
+  background-color: rgba(51, 51, 204, .2)
+}
+
+.player-loser {
+  background-color: rgba(153, 0, 0, .2)
+}
+.player-loser, .player-winner {
+  height: 50vh;
+  border-radius: 10px;
+}

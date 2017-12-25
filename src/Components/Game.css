@@ -5,11 +5,13 @@
   top: 0px;
   left: 0px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0px;
   padding: 0px;
 }
 
 .game-section > * {
-  width: 33.3vw;
+  width: 30vw;
   text-align: center;
 }
