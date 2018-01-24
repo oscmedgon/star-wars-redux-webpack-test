@@ -1,4 +1,4 @@
-import initialState from './initialState'
+import initialState from './initialState';
 
 const matchInfo = (state = initialState.matchInfo, action) => {
   switch (action.type) {
@@ -28,7 +28,7 @@ const matchInfo = (state = initialState.matchInfo, action) => {
           gold: action.payload.rules.gold,
           distance: action.payload.rules.distance
         }
-      }
+      };
     case 'LOAD_GAME_INIT':
       return {
         ...state,
@@ -55,11 +55,11 @@ const matchInfo = (state = initialState.matchInfo, action) => {
           gold: 'loading',
           distance: 'loading'
         }
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default matchInfo
+export default matchInfo;

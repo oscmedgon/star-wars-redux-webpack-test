@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import './player.css'
+import './player.css';
 
 const Player = props => {
-  const playerStatus = props.matchStatus ? 'player-winner' : 'player-loser'
+  const playerStatus = props.matchStatus ? 'player-winner' : 'player-loser';
   return (
     <div className={'player-section ' + playerStatus}>
       <h2>
@@ -24,7 +24,7 @@ const Player = props => {
         <li>Total time to complete: <strong>{Math.ceil(props.matchHistory.totalTime)}</strong> Hours</li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Player
+export default Player;

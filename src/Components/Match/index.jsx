@@ -1,25 +1,25 @@
-import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import * as gameActions from '../../actions'
-import './match.css'
+import * as gameActions from '../../actions/AppActions';
+import './match.css';
 
 class Match extends Component {
   constructor () {
-    super()
-    this.handleClick = this.handleClick.bind(this)
+    super();
+    this.handleClick = this.handleClick.bind(this);
   }
   async handleClick () {
-    await this.props.gameActions.generateNewMatch(this.props.players.list)
-    this.handleResolve()
+    await this.props.gameActions.generateNewMatch(this.props.players.list);
+    this.handleResolve();
   }
   handleResolve () {
-    const {players, rules} = this.props.matchInfo
-    this.props.gameActions.resolveMatch(players, rules)
+    const {players, rules} = this.props.matchInfo;
+    this.props.gameActions.resolveMatch(players, rules);
   }
   componentWillMount () {
-    this.handleResolve()
+    this.handleResolve();
   }
 
   render () {
@@ -39,19 +39,19 @@ class Match extends Component {
         </ul>
         <button className='btn btn-start' type='button' onClick={this.handleClick}>Next Round</button>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps (state) {
   return {
     ...state
-  }
+  };
 }
 function mapDispatchToProps (dispatch) {
   return {
     gameActions: bindActionCreators(gameActions, dispatch)
-  }
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Match)
+export default connect(mapStateToProps, mapDispatchToProps)(Match);

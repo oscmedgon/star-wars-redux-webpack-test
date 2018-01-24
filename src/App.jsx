@@ -1,17 +1,14 @@
-import React, {Component, PropTypes} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import * as gameActions from './actions'
-import Game from './Components'
-import './styles.css'
+import * as gameActions from './actions/AppActions';
+import Game from './Components';
+import './styles.css';
 
 class App extends Component {
-  constructor () {
-    super()
-  }
   async componentWillMount () {
-    await this.props.gameActions.loadPlayers()
+    await this.props.gameActions.loadPlayers();
   }
   render () {
     if (this.props.players.loading) {
@@ -22,28 +19,28 @@ class App extends Component {
             <img src='https://thumbs.gfycat.com/AmazingDazzlingFrog-max-1mb.gif' height='100' />
           </div>
         </div>
-      )
+      );
     } else {
       return (
         <Game />
-      )
+      );
     }
   }
 }
 App.propTypes = {
   gameActions: PropTypes.object.isRequired,
   players: PropTypes.object.isRequired
-}
+};
 
 function mapStateToProps (state) {
   return {
     ...state
-  }
+  };
 }
 function mapDispatchToProps (dispatch) {
   return {
     gameActions: bindActionCreators(gameActions, dispatch)
-  }
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);

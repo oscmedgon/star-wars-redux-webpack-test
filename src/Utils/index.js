@@ -1,6 +1,6 @@
 const generateRandomMatch = players => {
-  const randomPlayers1 = Math.floor(Math.random() * players.length)
-  const randomPlayers2 = Math.floor(Math.random() * players.length)
+  const randomPlayers1 = Math.floor(Math.random() * players.length);
+  const randomPlayers2 = Math.floor(Math.random() * players.length);
   const newPlayers = {
     player1: {
       name: players[randomPlayers1].name,
@@ -10,17 +10,17 @@ const generateRandomMatch = players => {
       name: players[randomPlayers2].name,
       vehicle: players[randomPlayers2].vehicles[Math.floor(Math.random() * players[randomPlayers2].vehicles.length)]
     }
-  }
+  };
   const rules = {
-    gold: Math.floor(Math.random() * 9900 + 100),
-    distance: Math.floor(Math.random() * 99000 + 1000)
-  }
-  const response = rulesPrettify(newPlayers, rules)
-  return response
-}
+    gold: Math.floor(Math.random() * 99000 + 1000),
+    distance: Math.floor(Math.random() * 9900 + 100)
+  };
+  const response = rulesPrettify(newPlayers, rules);
+  return response;
+};
 
 const rulesPrettify = (players, rules) => {
-  const {player1, player2} = players
+  const {player1, player2} = players;
   const response = {
     players: {
       player1: {
@@ -41,16 +41,16 @@ const rulesPrettify = (players, rules) => {
       }
     },
     rules: rules
-  }
-  return response
-}
+  };
+  return response;
+};
 
 const matchResolution = (players, rules) => {
-  const {player1, player2} = players
-  const {gold, distance} = rules
-  const statsP1 = checkPlayerStats(player1, gold, distance)
-  const statsP2 = checkPlayerStats(player2, gold, distance)
-  const result = checkWinner(statsP1.totalTime, statsP2.totalTime)
+  const {player1, player2} = players;
+  const {gold, distance} = rules;
+  const statsP1 = checkPlayerStats(player1, gold, distance);
+  const statsP2 = checkPlayerStats(player2, gold, distance);
+  const result = checkWinner(statsP1.totalTime, statsP2.totalTime);
   const response = {
     player1: {
       lastStatus: result !== 2 || false,
@@ -68,24 +68,24 @@ const matchResolution = (players, rules) => {
         travels: statsP2.travels
       }
     }
-  }
-  return response
-}
+  };
+  return response;
+};
 
 const checkPlayerStats = (player, gold, distance) => {
-  const {speed, cargo} = player.vehicle
+  const {speed, cargo} = player.vehicle;
   // Checking number of travels
-  const travels = Math.ceil(((gold / cargo) * 2) - 1)
+  const travels = Math.ceil(((gold / cargo) * 2) - 1);
   // Checking tital time to complete a single travel
-  const timePerTravel = distance / speed
+  const timePerTravel = distance / speed;
   // Checking total time including loads and unloads
-  const totalTime = (travels * timePerTravel) + travels
-  return {totalTime, timePerTravel, travels}
-}
+  const totalTime = (travels * timePerTravel) + travels;
+  return {totalTime, timePerTravel, travels};
+};
 
 const checkWinner = (p1, p2) => {
-  if (p1 > p2) return 2
-  else if (p1 < p2) return 1
-  else if (p1 === p2) return 'draw'
-}
-export {generateRandomMatch, matchResolution}
+  if (p1 > p2) return 2;
+  else if (p1 < p2) return 1;
+  else if (p1 === p2) return 'draw';
+};
+export {generateRandomMatch, matchResolution};

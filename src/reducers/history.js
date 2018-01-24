@@ -1,4 +1,4 @@
-import initialState from './initialState'
+import initialState from './initialState';
 
 const history = (state = initialState.history, action) => {
   switch (action.type) {
@@ -6,7 +6,7 @@ const history = (state = initialState.history, action) => {
       const counter = {
         p1: action.payload.player1.lastStatus ? state.player1.points + 1 : state.player1.points,
         p2: action.payload.player2.lastStatus ? state.player2.points + 1 : state.player2.points
-      }
+      };
       return {
         ...state,
         player1: {
@@ -27,11 +27,11 @@ const history = (state = initialState.history, action) => {
             travelNumber: action.payload.player2.lastStats.travels
           }
         }
-      }
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default history
+export default history;
